@@ -16,7 +16,7 @@ export function ServiceTimes() {
         <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
           {services.map((service, index) => (
             <div key={index} className="flex-none text-center px-4">
-              <div className="text-md whitespace-nowrap text-muted-foreground">
+              <div className="text-md font-medium whitespace-nowrap text-muted-foreground">
                 {service.name} -{service.time}
               </div>
             </div>

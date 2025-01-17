@@ -71,6 +71,12 @@ body {
   }
 }
 
+@layer utilities {
+  .sci-clip-path {
+    clip-path: polygon(0% 0%, 95% 0%, 100% 30%, 100% 100%, 5% 100%, 0% 70%);
+    /* clip-path: polygon(0% 0%, 95% 0%, 100% 30%, 100% 100%, 5% 100%, 0% 70%); */
+  }
+}
 
 @layer base {
   :root {

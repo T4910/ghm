@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const plugin = require("tailwindcss/plugin");
 
 export default {
     darkMode: ["class"],
@@ -84,5 +85,14 @@ export default {
 		},
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+	require("tailwindcss-animate"),
+	plugin(function ({ addUtilities }: { addUtilities: (utilities: Record<string, any>) => void }) {
+		addUtilities({
+		  ".clip-triangle": {
+			clipPath: "polygon(0 50%, 100% 0, 100% 100%)",
+		  },
+		});
+	}),
+  ],
 } satisfies Config;
