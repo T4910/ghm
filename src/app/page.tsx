@@ -15,11 +15,13 @@ export default function Home() {
       <main>
         <ServiceTimes />
         <Hero />
-        <MissionVision />
-        <Stats />
-        <FeaturedPhotos />
-        <SubUnits />
-        <FAQ />
+        <div className="font-grotesk">
+          <MissionVision />
+          <Stats />
+          <FeaturedPhotos />
+          <SubUnits />
+          <FAQ />
+        </div>
       </main>
       <Footer />
     </div>

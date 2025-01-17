@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Roboto_Mono, Tiny5 } from 'next/font/google'
+import { Inter, Roboto_Mono, Space_Grotesk, Tiny5 } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -20,6 +20,12 @@ const robotoMono = Roboto_Mono({
   variable: '--font-roboto-mono'
 })
 
+const grotesk = Space_Grotesk({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-grotesk'
+})
+
 
 export const metadata: Metadata = {
   title: 'Gilgal House Media',
@@ -33,7 +39,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${tiny.variable} ${inter.variable} ${robotoMono.variable} bg-black text-white min-h-screen`}>
+      <body className={`${tiny.variable} ${inter.variable} ${robotoMono.variable} ${grotesk.variable} bg-black text-white min-h-screen`}>
         {children}
       </body>
     </html>

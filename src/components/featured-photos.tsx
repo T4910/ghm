@@ -5,8 +5,8 @@ export function FeaturedPhotos() {
     <section className="py-16 px-4">
       <div className="space-y-8">
         <div>
-          <h2 className="text-5xl tracking-tighter text-gray-400  font-extrabold">THIS WEEKS</h2>
-          <h1 className="text-6xl md:text-7xl lg:text-8xl  tracking-tighter mb-8 font-extrabold">FEATURED PHOTOS</h1>
+          <h2 className="text-5xl tracking-tighter text-gray-400  font-bold">THIS WEEKS</h2>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl  tracking-tighter mb-8 font-bold">FEATURED PHOTOS</h1>
           <p className="text-sm text-center text-gray-400">
             THESE ARE GILGAL HOUSE MEDIA FEATURED PHOTOS 20/02/2024
           </p>

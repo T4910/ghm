@@ -29,7 +29,7 @@ export function SubUnits() {
     <section className="py-16 px-4">
       <div className="space-y-8">
         <div>
-          <h2 className="text-6xl md:text-7xl lg:text-8xl mb-8 font-extrabold">OUR<br />SUB UNITS</h2>
+          <h2 className="text-5xl md:text-7xl lg:text-8xl mb-8 font-bold tracking-tight">OUR<br />SUB UNITS</h2>
           <p className=" text-gray-400">
             GILGAL HOUSE MEDIA IS BROKEN DOWN INTO VARIOUS SUB-UNITS WHICH INCLUDE THE FOLLOWING
           </p>

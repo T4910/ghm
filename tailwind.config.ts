@@ -82,6 +82,7 @@ export default {
 		fontFamily: {
 			tiny: ['tiny5', 'inter', 'sans-serif'],
 			roboto: ['roboto_mono', 'monospace'],
+			grotesk: ['space_grotesk', 'sans-serif']
 		},
   	}
   },
