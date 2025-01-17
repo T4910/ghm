@@ -1,3 +1,5 @@
+import { InfiniteSlider } from "./ui/infinite-slider"
+
 export function ServiceTimes() {
   const services = [
     { name: 'SUNDAY FIRST SERVICE', time: '7AM' },
@@ -8,19 +10,19 @@ export function ServiceTimes() {
   ]
 
   return (
-    <div className="py-8 px-4">
-      <h2 className="text-center text-2xl mb-6">OUR SERVICE-TIMES</h2>
-      <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
-        {services.map((service, index) => (
-          <div key={index} className="flex-none text-center px-4">
-            <div className="text-xs whitespace-nowrap">
-              {service.name}
-              <br />
-              {service.time}
+    <div className="py-8">
+      <h2 className="text-center text-2xl font-semibold tracking-tighter mb-1.5">OUR SERVICE-TIMES</h2>
+      <InfiniteSlider duration={55} durationOnHover={75} reverse>
+        <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">
+          {services.map((service, index) => (
+            <div key={index} className="flex-none text-center px-4">
+              <div className="text-md whitespace-nowrap text-muted-foreground">
+                {service.name} -{service.time}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </InfiniteSlider>
     </div>
   )
 }
