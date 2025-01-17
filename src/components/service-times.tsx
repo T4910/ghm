@@ -10,7 +10,7 @@ export function ServiceTimes() {
   ]
 
   return (
-    <div className="py-8">
+    <div className="py-8 pb-4">
       <h2 className="text-center text-2xl font-semibold tracking-tighter mb-1.5">OUR SERVICE-TIMES</h2>
       <InfiniteSlider duration={55} durationOnHover={75} reverse>
         <div className="flex overflow-x-auto gap-4 pb-4 scrollbar-hide">

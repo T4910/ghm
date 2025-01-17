@@ -4,10 +4,10 @@ import { MovingArrows } from './ui/moving-arrows'
 
 export function Hero() {
   return (
-    <div className="py-16 px-4 text-left">
+    <div className="pt-4 pb-16 px-4 text-left">
       <MovingArrows />
 
-      <h1 className="text-3xl lg:text-7xl  font-tiny ">
+      <h1 className="text-3xl lg:text-7xl font-tiny ">
         GILGAL HOUSE {' '}
         <span className=" text-blue-500">MEDIA</span>
       </h1>
