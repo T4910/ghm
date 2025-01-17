@@ -25,13 +25,13 @@ export function FAQ() {
 
   return (
     <section className="py-16 px-4">
-      <h2 className="text-4xl md:text-5xl lg:text-6xl text-center mb-12">
+      <h2 className="text-3xl font-bold md:text-5xl lg:text-6xl text-center mb-12">
         FREQUENTLY<br />ASKED QUESTIONS
       </h2>
       <Accordion type="single" collapsible className="max-w-2xl mx-auto">
         {faqs.map((faq, index) => (
           <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className="text-left font-medium text-xl">
               {faq.question}
             </AccordionTrigger>
             <AccordionContent>
