@@ -1,12 +1,25 @@
 import type { Metadata } from 'next'
-import { Press_Start_2P } from 'next/font/google'
+import { Inter, Roboto_Mono, Tiny5 } from 'next/font/google'
 import './globals.css'
 
-const pressStart2P = Press_Start_2P({ 
+const inter = Inter({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-inter'
+})
+
+const tiny = Tiny5({
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-press-start'
+  variable: '--font-tiny5'
 })
+
+const robotoMono = Roboto_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto-mono'
+})
+
 
 export const metadata: Metadata = {
   title: 'Gilgal House Media',
@@ -20,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${pressStart2P.variable} bg-black text-white min-h-screen`}>
+      <body className={`${tiny.variable} ${inter.variable} ${robotoMono.variable} bg-black text-white min-h-screen`}>
         {children}
       </body>
     </html>

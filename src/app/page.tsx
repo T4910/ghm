@@ -10,7 +10,7 @@ import { SubUnits } from '@/components/sub-units'
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen font-roboto tracking-tight">
       <Header />
       <main>
         <ServiceTimes />

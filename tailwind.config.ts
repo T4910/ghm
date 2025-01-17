@@ -77,7 +77,11 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  		},
+		fontFamily: {
+			tiny: ['tiny5', 'inter', 'sans-serif'],
+			roboto: ['roboto_mono', 'monospace'],
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
