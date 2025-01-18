@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 
-export function MovingArrows () {
+export function MovingArrows ({ orientation }: { orientation?: 'start' | 'end' }) {
     const [currentFrame, setCurrentFrame] = useState(12);
     
     
@@ -159,13 +159,13 @@ export function MovingArrows () {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentFrame((prevFrame) => (prevFrame + 1) % svgFrames.length);
-        }, 560); // Change frame every 100ms
+        }, 555); // Change frame every 100ms
         return () => clearInterval(interval);
     }, [svgFrames.length]);
 
 
     return (
-        <div className="flex justify-start items-center h-full w-full">
+        <div className={`flex ${orientation === 'end' && '-scale-x-100'}  items-center h-full w-full`}>
             <motion.div
                 key={currentFrame} // Framer Motion uses the key to apply animations
                 // initial={{ opacity: 0, scale: 0.9 }} // Start small and faded
