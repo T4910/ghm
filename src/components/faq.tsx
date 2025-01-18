@@ -24,17 +24,17 @@ export function FAQ() {
   ]
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-8 font-grotesk">
       <h2 className="text-3xl font-bold md:text-5xl lg:text-6xl text-center mb-12">
         FREQUENTLY<br />ASKED QUESTIONS
       </h2>
-      <Accordion type="single" collapsible className="max-w-2xl mx-auto">
+      <Accordion className="max-w-2xl mx-auto -tracking-tight" transition={{ duration: 0.35, ease: 'easeInOut' }}>
         {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-left font-medium text-xl">
-              {faq.question}
+          <AccordionItem key={index} value={`item-${index}`} className="mb-8">
+            <AccordionTrigger className="text-left font-semibold text-xl mb-4">
+              <span className=" group-data-[expanded]:text-blue-600 transition-transform duration-200">{faq.question}</span>
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="font-grotesk">
               {faq.answer}
             </AccordionContent>
           </AccordionItem>
