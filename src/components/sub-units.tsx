@@ -1,3 +1,4 @@
+import CornerWrapper from '@/components/coner-wrapper'
 import Image from 'next/image'
 
 export function SubUnits() {
@@ -5,22 +6,22 @@ export function SubUnits() {
     {
       id: 1,
       name: 'VISUAL TEAM',
-      image: '/placeholder.svg'
+      image: '/placeholder.png'
     },
     {
       id: 2,
       name: 'AUDIO TEAM',
-      image: '/placeholder.svg'
+      image: '/placeholder.png'
     },
     {
       id: 3,
       name: 'GRAPHICS TEAM',
-      image: '/placeholder.svg'
+      image: '/placeholder.png'
     },
     {
       id: 4,
       name: 'LIGHT TEAM',
-      image: '/placeholder.svg'
+      image: '/placeholder.png'
     },
     // Add more units as needed
   ]
@@ -39,13 +40,15 @@ export function SubUnits() {
             <div key={unit.id} className="space-y-4 border-t">
               <div className="text-xl align-middle text-gray-400 inline-block mr-5">{'//'}{unit.id}</div>
               <h3 className="text-4xl font-bold inline-block">{unit.name}</h3>
-              <Image
-                src={unit.image}
-                alt={unit.name}
-                width={800}
-                height={400}
-                className="w-full aspect-video object-cover"
-              />
+              <CornerWrapper>
+                <Image
+                  src={unit.image}
+                  alt={unit.name}
+                  width={800}
+                  height={300}
+                  className="w-full aspect-video object-cover"
+                />
+              </CornerWrapper>
             </div>
           ))}
         </div>

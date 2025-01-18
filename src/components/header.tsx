@@ -32,7 +32,7 @@ export function Header() {
       </div>
       {/* <div className="flex items-center gap-4"> */}
         <span className="text-xs max-md:hidden">{currentTime}</span>
-        <Button variant="outline" size="sm" className="text-xs max-md:hidden">
+        <Button variant="sci" size="sm" className="text-xs max-md:hidden bg-white text-black px-16 py-0.5">
           WATCH LIVESTREAM
         </Button>
       {/* </div> */}

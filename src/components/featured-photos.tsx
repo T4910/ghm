@@ -1,6 +1,36 @@
+import CornerWrapper from '@/components/coner-wrapper'
 import Image from 'next/image'
 
 export function FeaturedPhotos() {
+  const pictures = [
+    {
+      title: 'Title',
+      image: '/placeholder.png',
+      alt: 'soemthing about the picture',
+      date: 'Apr 18, 2024'
+    },
+    {
+      title: 'Title',
+      image: '/placeholder.png',
+      alt: 'soemthing about the picture',
+      date: 'Apr 18, 2024'
+    },
+    {
+      title: 'Title',
+      image: '/placeholder.png',
+      alt: 'soemthing about the picture',
+      date: 'Apr 18, 2024'
+    },
+    {
+      title: 'Title',
+      image: '/placeholder.png',
+      alt: 'soemthing about the picture',
+      date: 'Apr 18, 2024'
+    },
+    
+  ]
+
+
   return (
     <section className="py-16 px-4">
       <div className="space-y-8">
@@ -11,21 +41,26 @@ export function FeaturedPhotos() {
             THESE ARE GILGAL HOUSE MEDIA FEATURED PHOTOS 20/02/2024
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Image
-            src="/placeholder.svg"
-            alt="Featured photo of a person from behind"
-            width={600}
-            height={400}
-            className="w-full aspect-video object-cover"
-          />
-          <Image
-            src="/placeholder.svg"
-            alt="Featured photo"
-            width={600}
-            height={400}
-            className="w-full aspect-video object-cover"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {
+            pictures.map((pic, index) => (
+              <div className="flex flex-col w-full" key={index}>
+                <CornerWrapper>
+                  <Image
+                    src={pic.image}
+                    alt={pic.alt}
+                    width={600}
+                    height={450}
+                    className="w-full aspect-video object-cover"  
+                  />
+                </CornerWrapper>
+                <div className="flex justify-between mt-5 -tracking-tight text-sm">
+                  <p className='font-medium'>{pic.title}</p>
+                  <p className='text-muted-foreground'>{pic.date}</p>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
