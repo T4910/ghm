@@ -1,14 +1,14 @@
 'use client';
-import {
-  motion,
-  AnimatePresence,
-  Transition,
-  Variants,
-  Variant,
-  MotionConfig,
-} from 'motion/react';
 import { cn } from '@/lib/utils';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import {
+  AnimatePresence,
+  motion,
+  MotionConfig,
+  Transition,
+  Variant,
+  Variants,
+} from 'motion/react';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 export type AccordionContextType = {
   expandedValue: React.Key | null;
@@ -114,9 +114,9 @@ function AccordionItem({ value, children, className }: AccordionItemProps) {
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            ...child.props,
-            value,
+          return React.cloneElement(child as React.ReactElement<{ value: React.Key; expanded: boolean }>, {
+            ...(typeof child.props === 'object' ? child.props : {}),
+            ...(typeof child.props === 'object' ? { ...child.props, value } : { value }),
             expanded: isExpanded,
           });
         }
@@ -194,4 +194,5 @@ function AccordionContent({
   );
 }
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };
+
