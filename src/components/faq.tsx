@@ -20,6 +20,10 @@ export function FAQ() {
     {
       question: "Do I need to code?",
       answer: "Framer is an end to end tool that lets everyone design and ship web sites. You don't need a frontend team or web programming course. Just basic canvas skills."
+    },
+    {
+      question: "Is Emmanuel still working on this thing",
+      answer: "Yes. Yes, Emmanuel is still working on finishing the website. But seriously, pity Emmanuel. The concepts I have to create is very new for Emmanuel."
     }
   ]
 
