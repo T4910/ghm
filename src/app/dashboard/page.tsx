@@ -1,7 +1,13 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Calendar, Users, FileText, Bell } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Bell, Calendar, FileText, Users } from "lucide-react";
 
 export default function DashboardPage() {
   // Mock user data - in a real app, this would come from authentication
@@ -12,15 +18,17 @@ export default function DashboardPage() {
     level: "300 Level",
     attendanceRate: "85%",
     lastAttendance: "March 15, 2025",
-  }
+  };
 
-  const isAdmin = user.role === "admin"
+  const isAdmin = user.role === "admin";
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back, {user.name}! Here's an overview of your account.</p>
+        <p className="text-muted-foreground">
+          Welcome back, {user.name}! Here{"'"}s an overview of your account.
+        </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -31,7 +39,9 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{user.subunit}</div>
-            <p className="text-xs text-muted-foreground">Your assigned subunit</p>
+            <p className="text-xs text-muted-foreground">
+              Your assigned subunit
+            </p>
           </CardContent>
         </Card>
         <Card>
@@ -41,7 +51,9 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{user.level}</div>
-            <p className="text-xs text-muted-foreground">Current academic level</p>
+            <p className="text-xs text-muted-foreground">
+              Current academic level
+            </p>
           </CardContent>
         </Card>
         <Card>
@@ -51,17 +63,23 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{user.attendanceRate}</div>
-            <p className="text-xs text-muted-foreground">Overall attendance rate</p>
+            <p className="text-xs text-muted-foreground">
+              Overall attendance rate
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Last Attendance</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              Last Attendance
+            </CardTitle>
             <Bell className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{user.lastAttendance}</div>
-            <p className="text-xs text-muted-foreground">Last recorded attendance</p>
+            <p className="text-xs text-muted-foreground">
+              Last recorded attendance
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -78,7 +96,10 @@ export default function DashboardPage() {
               <CardDescription>March 20, 2025 • 4:00 PM</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>Monthly general meeting for all members. Attendance is mandatory.</p>
+              <p>
+                Monthly general meeting for all members. Attendance is
+                mandatory.
+              </p>
             </CardContent>
           </Card>
           <Card>
@@ -87,7 +108,10 @@ export default function DashboardPage() {
               <CardDescription>March 25, 2025 • 2:00 PM</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>Technical subunit workshop on web development. Open to all members.</p>
+              <p>
+                Technical subunit workshop on web development. Open to all
+                members.
+              </p>
             </CardContent>
           </Card>
         </TabsContent>
@@ -98,7 +122,10 @@ export default function DashboardPage() {
               <CardDescription>Posted on March 10, 2025</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>We are now accepting applications for new members. Please encourage interested students to apply.</p>
+              <p>
+                We are now accepting applications for new members. Please
+                encourage interested students to apply.
+              </p>
             </CardContent>
           </Card>
           <Card>
@@ -107,7 +134,10 @@ export default function DashboardPage() {
               <CardDescription>Posted on March 5, 2025</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>Elections for the next executive committee will be held next month. Nominations open soon.</p>
+              <p>
+                Elections for the next executive committee will be held next
+                month. Nominations open soon.
+              </p>
             </CardContent>
           </Card>
         </TabsContent>
@@ -139,6 +169,5 @@ export default function DashboardPage() {
         </div>
       )}
     </div>
-  )
+  );
 }
-

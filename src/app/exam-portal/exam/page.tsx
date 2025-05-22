@@ -1,12 +1,5 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Progress } from "@/components/ui/progress"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,12 +9,25 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
-import { Clock, AlertTriangle } from "lucide-react"
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { AlertTriangle, Clock } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 // Generate 50 mock questions with 5 options each
 const generateMockQuestions = () => {
-  const questions = []
+  const questions = [];
   const topics = [
     "Organization History",
     "Mission and Values",
@@ -33,13 +39,16 @@ const generateMockQuestions = () => {
     "Leadership Principles",
     "Team Collaboration",
     "Problem Solving",
-  ]
+  ];
 
   for (let i = 1; i <= 50; i++) {
-    const topicIndex = Math.floor(i / 5) % topics.length
+    const topicIndex = Math.floor(i / 5) % topics.length;
     questions.push({
       id: i,
-      question: `Question ${i}: ${topics[topicIndex]} - ${getQuestionText(i, topicIndex)}`,
+      question: `Question ${i}: ${topics[topicIndex]} - ${getQuestionText(
+        i,
+        topicIndex
+      )}`,
       options: [
         { value: "A", label: `Option A for question ${i}` },
         { value: "B", label: `Option B for question ${i}` },
@@ -48,11 +57,11 @@ const generateMockQuestions = () => {
         { value: "E", label: `Option E for question ${i}` },
       ],
       correctAnswer: String.fromCharCode(65 + Math.floor(Math.random() * 5)), // A, B, C, D, or E
-    })
+    });
   }
 
-  return questions
-}
+  return questions;
+};
 
 // Helper function to generate more realistic question text
 function getQuestionText(questionNumber: number, topicIndex: number) {
@@ -137,89 +146,91 @@ function getQuestionText(questionNumber: number, topicIndex: number) {
       "When should you seek help with a technical problem?",
       "How do you evaluate the effectiveness of a solution?",
     ],
-  ]
+  ];
 
-  const index = (questionNumber - 1) % 5
-  return topics[topicIndex][index]
+  const index = (questionNumber - 1) % 5;
+  return topics[topicIndex][index];
 }
 
 export default function ExamPage() {
-  const router = useRouter()
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, string>>({})
-  const [timeLeft, setTimeLeft] = useState(30 * 60) // 30 minutes in seconds
-  const [isSubmitDialogOpen, setIsSubmitDialogOpen] = useState(false)
-  const [isTimeoutDialogOpen, setIsTimeoutDialogOpen] = useState(false)
+  const router = useRouter();
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
+  const [isSubmitDialogOpen, setIsSubmitDialogOpen] = useState(false);
+  const [isTimeoutDialogOpen, setIsTimeoutDialogOpen] = useState(false);
 
-  const questions = generateMockQuestions()
+  const questions = generateMockQuestions();
 
   // Timer countdown
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
-          clearInterval(timer)
-          handleTimeout()
-          return 0
+          clearInterval(timer);
+          handleTimeout();
+          return 0;
         }
-        return prevTime - 1
-      })
-    }, 1000)
+        return prevTime - 1;
+      });
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearInterval(timer);
+  }, []);
 
   const handleTimeout = () => {
-    setIsTimeoutDialogOpen(true)
-  }
+    setIsTimeoutDialogOpen(true);
+  };
 
   const formatTime = (seconds: number) => {
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`
-  }
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
+  };
 
   const handleAnswerChange = (value: string) => {
     setAnswers({
       ...answers,
       [currentQuestion]: value,
-    })
-  }
+    });
+  };
 
   const goToNextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
+      setCurrentQuestion(currentQuestion + 1);
     }
-  }
+  };
 
   const goToPreviousQuestion = () => {
     if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1)
+      setCurrentQuestion(currentQuestion - 1);
     }
-  }
+  };
 
   const handleSubmitExam = () => {
     // Calculate score - in a real app, this would be done on the server
-    let correctAnswers = 0
+    let correctAnswers = 0;
     Object.keys(answers).forEach((questionIndex) => {
-      const index = Number.parseInt(questionIndex)
+      const index = Number.parseInt(questionIndex);
       if (answers[index] === questions[index].correctAnswer) {
-        correctAnswers++
+        correctAnswers++;
       }
-    })
+    });
 
-    const scorePercentage = Math.round((correctAnswers / questions.length) * 100)
+    const scorePercentage = Math.round(
+      (correctAnswers / questions.length) * 100
+    );
 
     // Store score in localStorage (in a real app, this would be sent to a server)
-    localStorage.setItem("examScore", scorePercentage.toString())
+    localStorage.setItem("examScore", scorePercentage.toString());
 
     // Redirect to dashboard
-    router.push("/exam-portal/dashboard")
-  }
+    router.push("/exam-portal/dashboard");
+  };
 
-  const currentQuestionData = questions[currentQuestion]
-  const progress = ((currentQuestion + 1) / questions.length) * 100
-  const answeredQuestions = Object.keys(answers).length
+  const currentQuestionData = questions[currentQuestion];
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const answeredQuestions = Object.keys(answers).length;
 
   return (
     <div className="flex min-h-screen flex-col bg-muted/30">
@@ -231,7 +242,10 @@ export default function ExamPage() {
               <Clock className="h-4 w-4" />
               <span className="font-medium">{formatTime(timeLeft)}</span>
             </div>
-            <Button variant="outline" onClick={() => setIsSubmitDialogOpen(true)}>
+            <Button
+              variant="outline"
+              onClick={() => setIsSubmitDialogOpen(true)}
+            >
               Submit Exam
             </Button>
           </div>
@@ -256,7 +270,9 @@ export default function ExamPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg font-medium">{currentQuestionData.question}</CardTitle>
+              <CardTitle className="text-lg font-medium">
+                {currentQuestionData.question}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <RadioGroup
@@ -269,8 +285,14 @@ export default function ExamPage() {
                     key={option.value}
                     className="flex items-center space-x-2 rounded-md border p-3 hover:bg-muted/50"
                   >
-                    <RadioGroupItem value={option.value} id={`option-${option.value}`} />
-                    <Label htmlFor={`option-${option.value}`} className="flex-1 cursor-pointer">
+                    <RadioGroupItem
+                      value={option.value}
+                      id={`option-${option.value}`}
+                    />
+                    <Label
+                      htmlFor={`option-${option.value}`}
+                      className="flex-1 cursor-pointer"
+                    >
                       {option.value}. {option.label}
                     </Label>
                   </div>
@@ -278,10 +300,17 @@ export default function ExamPage() {
               </RadioGroup>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={goToPreviousQuestion} disabled={currentQuestion === 0}>
+              <Button
+                variant="outline"
+                onClick={goToPreviousQuestion}
+                disabled={currentQuestion === 0}
+              >
                 Previous
               </Button>
-              <Button onClick={goToNextQuestion} disabled={currentQuestion === questions.length - 1}>
+              <Button
+                onClick={goToNextQuestion}
+                disabled={currentQuestion === questions.length - 1}
+              >
                 Next
               </Button>
             </CardFooter>
@@ -295,7 +324,9 @@ export default function ExamPage() {
                     <Button
                       key={index}
                       variant={answers[index] ? "default" : "outline"}
-                      className={`h-10 w-10 p-0 ${currentQuestion === index ? "ring-2 ring-primary" : ""}`}
+                      className={`h-10 w-10 p-0 ${
+                        currentQuestion === index ? "ring-2 ring-primary" : ""
+                      }`}
                       onClick={() => setCurrentQuestion(index)}
                     >
                       {index + 1}
@@ -309,21 +340,24 @@ export default function ExamPage() {
       </main>
 
       {/* Submit Confirmation Dialog */}
-      <AlertDialog open={isSubmitDialogOpen} onOpenChange={setIsSubmitDialogOpen}>
+      <AlertDialog
+        open={isSubmitDialogOpen}
+        onOpenChange={setIsSubmitDialogOpen}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Submit Examination</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to submit your examination? You have answered {answeredQuestions} out of{" "}
-              {questions.length} questions.
+              Are you sure you want to submit your examination? You have
+              answered {answeredQuestions} out of {questions.length} questions.
               {answeredQuestions < questions.length && (
                 <div className="mt-2 flex items-start gap-2 rounded-md border p-3 bg-amber-50 text-amber-800 border-amber-200">
                   <AlertTriangle className="h-5 w-5 shrink-0 mt-0.5" />
                   <div>
                     <p className="font-medium">Warning</p>
                     <p className="text-sm">
-                      You have {questions.length - answeredQuestions} unanswered questions. Once submitted, you cannot
-                      return to the exam.
+                      You have {questions.length - answeredQuestions} unanswered
+                      questions. Once submitted, you cannot return to the exam.
                     </p>
                   </div>
                 </div>
@@ -332,26 +366,33 @@ export default function ExamPage() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Continue Exam</AlertDialogCancel>
-            <AlertDialogAction onClick={handleSubmitExam}>Submit Exam</AlertDialogAction>
+            <AlertDialogAction onClick={handleSubmitExam}>
+              Submit Exam
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
 
       {/* Timeout Dialog */}
-      <AlertDialog open={isTimeoutDialogOpen} onOpenChange={setIsTimeoutDialogOpen}>
+      <AlertDialog
+        open={isTimeoutDialogOpen}
+        onOpenChange={setIsTimeoutDialogOpen}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Time's Up!</AlertDialogTitle>
+            <AlertDialogTitle>Time{"'"}s Up!</AlertDialogTitle>
             <AlertDialogDescription>
-              Your examination time has expired. Your answers will be automatically submitted.
+              Your examination time has expired. Your answers will be
+              automatically submitted.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction onClick={handleSubmitExam}>Okay</AlertDialogAction>
+            <AlertDialogAction onClick={handleSubmitExam}>
+              Okay
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  )
+  );
 }
-
